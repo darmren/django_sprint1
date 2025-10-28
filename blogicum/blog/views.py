@@ -45,13 +45,13 @@ posts = [
 
 
 def index(request):
-    return render(request, "index.html", {"posts": posts})
+    return render(request, "blog/index.html", {"posts": list(reversed(posts))})
 
 
 def post_detail(request, id):
-    post = get_object_or_404(posts, id=id)
-    return render(request, "detail.html", {"post": post})
+    post = posts[id]
+    return render(request, "blog/detail.html", {"post": post})
 
 
 def category_posts(request, category_slug):
-    return render(request, "category.html", {"category_slug": category_slug})
+    return render(request, "blog/category.html", {"category_slug": category_slug})
